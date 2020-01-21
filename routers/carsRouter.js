@@ -35,4 +35,17 @@ router.post('/', (req, res) => {
     });
 });
 
+//PUT Request -> Update car on cars-table
+router.put('/:id', (req, res) => {
+  db('cars').where({ id: req.params.id}).update(req.body)
+    .then(updated => {
+      res.status(200).json(updated)
+    })
+    .catch(err => {
+      res.status(500).json({ error: "Could not update the car info" });
+    });
+});
+
+//DELETE Request -> Delete car on cars-table
+
 module.exports = router;
