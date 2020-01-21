@@ -47,5 +47,14 @@ router.put('/:id', (req, res) => {
 });
 
 //DELETE Request -> Delete car on cars-table
+router.delete('/:id', (req, res) => {
+  db('cars').where({ id: req.params.id}).del()
+    .then(deleted => {
+      res.status(200).json(deleted);
+    })
+    .catch(err => {
+      res.status(500).json({ error: "Could not delete car info" });
+    });
+});
 
 module.exports = router;
