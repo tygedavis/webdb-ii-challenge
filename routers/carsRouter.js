@@ -19,10 +19,20 @@ router.get('/', (req, res) => {
       res.status(200).json(car);
     })
     .catch(err => {
-      res.status(500).json({ message: 'Fallied to get info' });
+      res.status(500).json({ error: 'Fallied to get info' });
     });
 });
 
 //POST Request -> Create on cars-table
+router.post('/', (req, res) => {
+  db('cars').insert(req.body)
+    .then(newCar => {
+      console.log("New Car entry Success!", newCar);
+      res.status(201).json(newCar);
+    })
+    .catch(err => {
+      res.status(500).json({ error: "Failed to post new car" });
+    });
+});
 
 module.exports = router;
