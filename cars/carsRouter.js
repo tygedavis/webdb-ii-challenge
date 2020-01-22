@@ -3,14 +3,6 @@ const knex = require('knex');
 
 const Cars = require('./cars-model');
 
-const db = knex({
-  client: 'sqlite3',
-  connection: {
-    filename: './data/car-dealer.db3'
-  },
-  useNullAsDefault: true
-});
-
 const router = express.Router();
 
 //GET Request -> Read on cars-table
